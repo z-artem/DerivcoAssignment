@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DerivcoAssignment", "DerivcoAssignment\DerivcoAssignment.csproj", "{4150A61B-0DE3-4DAC-87CD-8C030BF4D102}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DerivcoAssignment.Web", "DerivcoAssignment\DerivcoAssignment.Web.csproj", "{4150A61B-0DE3-4DAC-87CD-8C030BF4D102}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DerivcoAssignment.Core", "DerivcoAssignment.Core\DerivcoAssignment.Core.csproj", "{8FA9B48E-9DC6-4E8B-967B-12CF6E474589}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DerivcoAssignment.Tests", "DerivcoAssignment.Tests\DerivcoAssignment.Tests.csproj", "{28892B3C-7325-4E93-846F-9CDC2DE46C33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{4150A61B-0DE3-4DAC-87CD-8C030BF4D102}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4150A61B-0DE3-4DAC-87CD-8C030BF4D102}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4150A61B-0DE3-4DAC-87CD-8C030BF4D102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FA9B48E-9DC6-4E8B-967B-12CF6E474589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FA9B48E-9DC6-4E8B-967B-12CF6E474589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FA9B48E-9DC6-4E8B-967B-12CF6E474589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FA9B48E-9DC6-4E8B-967B-12CF6E474589}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28892B3C-7325-4E93-846F-9CDC2DE46C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28892B3C-7325-4E93-846F-9CDC2DE46C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28892B3C-7325-4E93-846F-9CDC2DE46C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28892B3C-7325-4E93-846F-9CDC2DE46C33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
