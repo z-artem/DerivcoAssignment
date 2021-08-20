@@ -24,7 +24,7 @@ namespace DerivcoAssignment.Controllers
         [ProducesResponseType(typeof(FibonacciResponseViewModel), StatusCodes.Status200OK)]
         public async Task<ActionResult> GenerateAsync(FibonacciRequestViewModel request)
         {
-            var numbers = await fibonacciGenerator.GenerateFibonacci(request.FirstIndex, request.LastIndex, request.TimeLimit);
+            var numbers = await fibonacciGenerator.GenerateFibonacci(request.FirstIndex, request.LastIndex, request.TimeLimit, request.MemoryLimit);
 
             var viewModel = new FibonacciResponseViewModel
             {
