@@ -16,8 +16,10 @@ namespace DerivcoAssignment.Web.ViewModels
 
         public bool UseCache { get; set; }
 
+        [Range(0, int.MaxValue, ErrorMessage = "Can't use negative number as time limit")]
         public int TimeLimit { get; set; }
 
+        [Range(0, int.MaxValue, ErrorMessage = "Can't use negative number as memory limit")]
         public int MemoryLimit { get; set; }
     }
 }

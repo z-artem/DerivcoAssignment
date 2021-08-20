@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
+using System.Threading.Tasks;
 
 namespace DerivcoAssignment.Controllers
 {
@@ -21,9 +22,9 @@ namespace DerivcoAssignment.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(FibonacciResponseViewModel), StatusCodes.Status200OK)]
-        public ActionResult Generate(FibonacciRequestViewModel request)
+        public async Task<ActionResult> GenerateAsync(FibonacciRequestViewModel request)
         {
-            var numbers = fibonacciGenerator.GenerateFibonacci(request.FirstIndex, request.LastIndex);
+            var numbers = await fibonacciGenerator.GenerateFibonacci(request.FirstIndex, request.LastIndex, request.TimeLimit);
 
             var viewModel = new FibonacciResponseViewModel
             {
