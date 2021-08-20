@@ -1,7 +1,10 @@
-﻿namespace DerivcoAssignment.Core
+﻿using System.Collections.Generic;
+using System.Numerics;
+
+namespace DerivcoAssignment.Core
 {
     public interface IFibonacciGenerator
     {
-        string GenerateFibonacci(uint firstIndex, uint lastIndex);
+        List<BigInteger> GenerateFibonacci(uint firstIndex, uint lastIndex);
     }
 }

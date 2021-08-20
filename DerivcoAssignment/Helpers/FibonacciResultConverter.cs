@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 
-namespace DerivcoAssignment.Core.Helpers
+namespace DerivcoAssignment.Web.Helpers
 {
     public class FibonacciResultConverter : JsonConverter<List<BigInteger>>
     {

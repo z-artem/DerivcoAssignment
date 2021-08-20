@@ -1,13 +1,11 @@
-﻿using DerivcoAssignment.Core.Helpers;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Numerics;
 
 namespace DerivcoAssignment.Core
 {
     public class FibonacciGenerator : IFibonacciGenerator
     {
-        public string GenerateFibonacci(uint firstIndex, uint lastIndex)
+        public List<BigInteger> GenerateFibonacci(uint firstIndex, uint lastIndex)
         {
             List<BigInteger> fibNumbers = new List<BigInteger>();
             BigInteger currentNumber = 1;
@@ -25,8 +23,7 @@ namespace DerivcoAssignment.Core
                 }
             }
 
-            var jsonResult = JsonConvert.SerializeObject(fibNumbers, new FibonacciResultConverter());
-            return jsonResult;
+            return fibNumbers;
         }
     }
 }
