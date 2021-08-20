@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using DerivcoAssignment.Core.Helpers;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Numerics;
-using System.Text.Json;
 
 namespace DerivcoAssignment.Core
 {
@@ -25,7 +25,7 @@ namespace DerivcoAssignment.Core
                 }
             }
 
-            var jsonResult = JsonSerializer.Serialize(fibNumbers.Select(x => x.ToString()));
+            var jsonResult = JsonConvert.SerializeObject(fibNumbers, new FibonacciResultConverter());
             return jsonResult;
         }
     }
