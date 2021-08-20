@@ -19,15 +19,15 @@ namespace DerivcoAssignment.Controllers
             this.fibonacciGenerator = fibonacciGenerator ?? throw new ArgumentNullException(nameof(fibonacciGenerator));
         }
 
-        [HttpGet]
-        [ProducesResponseType(typeof(FibonacciResultViewModel), StatusCodes.Status200OK)]
-        public ActionResult Get(uint firstIndex, uint lastIndex, bool useCache, uint timeLimit, uint memoryLimit)
+        [HttpPost]
+        [ProducesResponseType(typeof(FibonacciResponseViewModel), StatusCodes.Status200OK)]
+        public ActionResult Generate(FibonacciRequestViewModel request)
         {
-            var numbers = fibonacciGenerator.GenerateFibonacci(firstIndex, lastIndex);
+            var numbers = fibonacciGenerator.GenerateFibonacci(request.FirstIndex, request.LastIndex);
 
-            var viewModel = new FibonacciResultViewModel
+            var viewModel = new FibonacciResponseViewModel
             {
-                FibonacciNumbers = JsonConvert.SerializeObject(numbers, new FibonacciResultConverter()),
+                FibonacciNumbers = JsonConvert.SerializeObject(numbers, new FibonacciResponseConverter()),
                 Status = Core.Enums.GenerationResult.Ok
             };
 

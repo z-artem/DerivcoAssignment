@@ -5,13 +5,13 @@ namespace DerivcoAssignment.Core
 {
     public class FibonacciGenerator : IFibonacciGenerator
     {
-        public List<BigInteger> GenerateFibonacci(uint firstIndex, uint lastIndex)
+        public List<BigInteger> GenerateFibonacci(int firstIndex, int lastIndex)
         {
             List<BigInteger> fibNumbers = new List<BigInteger>();
             BigInteger currentNumber = 1;
             BigInteger previousNumber = 0;
 
-            for (int i = 0; i < lastIndex; i++)
+            for (int i = 0; i < lastIndex + 1; i++)
             {
                 BigInteger temp = currentNumber;
                 currentNumber += previousNumber;

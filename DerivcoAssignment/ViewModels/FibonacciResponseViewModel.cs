@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace DerivcoAssignment.Web.ViewModels
 {
-    public class FibonacciResultViewModel
+    public class FibonacciResponseViewModel
     {
         public string FibonacciNumbers { get; set; }
 

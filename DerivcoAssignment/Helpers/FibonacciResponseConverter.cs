@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace DerivcoAssignment.Web.Helpers
 {
-    public class FibonacciResultConverter : JsonConverter<List<BigInteger>>
+    public class FibonacciResponseConverter : JsonConverter<List<BigInteger>>
     {
         public override List<BigInteger> ReadJson(JsonReader reader, Type objectType, List<BigInteger> existingValue, bool hasExistingValue, JsonSerializer serializer)
         {

@@ -5,6 +5,6 @@ namespace DerivcoAssignment.Core
 {
     public interface IFibonacciGenerator
     {
-        List<BigInteger> GenerateFibonacci(uint firstIndex, uint lastIndex);
+        List<BigInteger> GenerateFibonacci(int firstIndex, int lastIndex);
     }
 }
