@@ -6,13 +6,13 @@ namespace DerivcoAssignment.Web.Validation
 {
     public class ComparisonAttribute : ValidationAttribute
     {
-        private readonly string compareTo;
-        private readonly ComparisonType comparisonType;
+        private readonly string _compareTo;
+        private readonly ComparisonType _comparisonType;
 
         public ComparisonAttribute(string compareTo, ComparisonType comparisonType)
         {
-            this.compareTo = compareTo ?? throw new ArgumentNullException(nameof(compareTo));
-            this.comparisonType = comparisonType;
+            this._compareTo = compareTo ?? throw new ArgumentNullException(nameof(compareTo));
+            this._comparisonType = comparisonType;
         }
 
         public override bool RequiresValidationContext => true;
@@ -23,14 +23,14 @@ namespace DerivcoAssignment.Web.Validation
         {
             object instance = validationContext.ObjectInstance;
             Type type = instance.GetType();
-            object compareToValue = type.GetProperty(compareTo).GetValue(instance, null);
+            object compareToValue = type.GetProperty(_compareTo).GetValue(instance, null);
 
             if (value == null || compareToValue == null) return ValidationResult.Success;
 
             bool result = false;
             int comparisonResult = ((IComparable)value).CompareTo(compareToValue);
 
-            switch (comparisonType)
+            switch (_comparisonType)
             {
                 case ComparisonType.Equals:
                     result = comparisonResult == 0;

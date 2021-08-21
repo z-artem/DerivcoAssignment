@@ -13,18 +13,18 @@ namespace DerivcoAssignment.Controllers
     [ApiController]
     public class FibonacciController : ControllerBase
     {
-        private readonly IFibonacciGenerator fibonacciGenerator;
+        private readonly IFibonacciGenerator _fibonacciGenerator;
 
         public FibonacciController(IFibonacciGenerator fibonacciGenerator)
         {
-            this.fibonacciGenerator = fibonacciGenerator ?? throw new ArgumentNullException(nameof(fibonacciGenerator));
+            _fibonacciGenerator = fibonacciGenerator ?? throw new ArgumentNullException(nameof(fibonacciGenerator));
         }
 
         [HttpPost]
         [ProducesResponseType(typeof(FibonacciResponseViewModel), StatusCodes.Status200OK)]
         public async Task<ActionResult> GenerateAsync(FibonacciRequestViewModel request)
         {
-            var numbers = await fibonacciGenerator.GenerateFibonacci(request.FirstIndex, request.LastIndex, request.TimeLimit, request.MemoryLimit);
+            var numbers = await _fibonacciGenerator.GenerateFibonacci(request.FirstIndex, request.LastIndex, request.TimeLimit, request.MemoryLimit);
 
             var viewModel = new FibonacciResponseViewModel
             {

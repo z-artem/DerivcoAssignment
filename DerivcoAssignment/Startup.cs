@@ -30,7 +30,7 @@ namespace DerivcoAssignment
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DerivcoAssignment", Version = "v1" });
             });
 
-            services.AddTransient<IFibonacciGenerator, FibonacciGenerator>();
+            services.RegisterDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
