@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using DerivcoAssignment.Core.Dtos;
+using DerivcoAssignment.Core.Enums;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -16,15 +18,16 @@ namespace DerivcoAssignment.Core
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<List<BigInteger>> GenerateFibonacci(int firstIndex, int lastIndex, int timeLimit, int memoryLimit)
+        public async Task<FibonacciResultDto> GenerateFibonacci(int firstIndex, int lastIndex, int timeLimit, int memoryLimit)
         {
             var cts = new CancellationTokenSource(timeLimit);
 
             return await Task.Run(() => RunGenerator(firstIndex, lastIndex, memoryLimit, cts.Token));
         }
 
-        private List<BigInteger> RunGenerator(int firstIndex, int lastIndex, int memoryLimit, CancellationToken cancellationToken)
+        private FibonacciResultDto RunGenerator(int firstIndex, int lastIndex, int memoryLimit, CancellationToken cancellationToken)
         {
+            GenerationResult result = GenerationResult.Ok;
             List<BigInteger> fibNumbers = new List<BigInteger>();
             BigInteger currentNumber = 1;
             BigInteger previousNumber = 0;
@@ -46,29 +49,35 @@ namespace DerivcoAssignment.Core
 
                     if (cancellationToken.IsCancellationRequested)
                     {
+                        result = GenerationResult.Timeout;
                         _logger.LogWarning("Operation cancelled by timeout exceeded");
-                        return fibNumbers;
+                        break;
                     }
 
                     if (GC.GetTotalMemory(false) - memBefore > memoryLimit)
                     {
+                        result = GenerationResult.MemExceeded;
                         _logger.LogWarning("Operation cancelled by memory usage limit exceeded");
-                        return fibNumbers;
+                        break;
                     }
                 }
             }
             catch (OperationCanceledException)
             {
+                result = GenerationResult.Timeout;
                 _logger.LogWarning("Operation cancelled by timeout exceeded");
-                return fibNumbers;
             }
             catch (Exception ex)
             {
+                result = GenerationResult.UnknownError;
                 _logger.LogError(ex, "Execution interrupted by the unknown exception");
-                throw;
             }
 
-            return fibNumbers;
+            return new FibonacciResultDto
+            {
+                FibonacciNumbers = fibNumbers,
+                Status = result
+            };
         }
     }
 }

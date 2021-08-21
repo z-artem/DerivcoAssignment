@@ -1,9 +1,8 @@
-﻿using DerivcoAssignment.Core;
-using DerivcoAssignment.Web.Helpers;
+﻿using AutoMapper;
+using DerivcoAssignment.Core;
 using DerivcoAssignment.Web.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
@@ -14,10 +13,12 @@ namespace DerivcoAssignment.Controllers
     public class FibonacciController : ControllerBase
     {
         private readonly IFibonacciGenerator _fibonacciGenerator;
+        private readonly IMapper _mapper;
 
-        public FibonacciController(IFibonacciGenerator fibonacciGenerator)
+        public FibonacciController(IFibonacciGenerator fibonacciGenerator, IMapper mapper)
         {
             _fibonacciGenerator = fibonacciGenerator ?? throw new ArgumentNullException(nameof(fibonacciGenerator));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpPost]
@@ -26,11 +27,7 @@ namespace DerivcoAssignment.Controllers
         {
             var numbers = await _fibonacciGenerator.GenerateFibonacci(request.FirstIndex, request.LastIndex, request.TimeLimit, request.MemoryLimit);
 
-            var viewModel = new FibonacciResponseViewModel
-            {
-                FibonacciNumbers = JsonConvert.SerializeObject(numbers, new FibonacciResponseConverter()),
-                Status = Core.Enums.GenerationResult.Ok
-            };
+            var viewModel = _mapper.Map<FibonacciResponseViewModel>(numbers);
 
             return Ok(viewModel);
         }
