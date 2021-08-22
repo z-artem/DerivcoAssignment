@@ -1,4 +1,5 @@
 using DerivcoAssignment.Core;
+using DerivcoAssignment.Core.Infrastructure;
 using DerivcoAssignment.Web.Mapping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,8 @@ namespace DerivcoAssignment
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DerivcoAssignment", Version = "v1" });
             });
+
+            services.Configure<CoreSettings>(Configuration.GetSection("CoreSettings"));
 
             services.AddSingleton(AutomapperFactory.CreateAndConfigure());
             services.RegisterDependencies();

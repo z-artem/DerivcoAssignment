@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -15,11 +16,11 @@ namespace DerivcoAssignment.Core.Infrastructure
 
         private readonly object lockObject = new object();
 
-        public NumbersCache(ILogger<NumbersCache> logger)
+        public NumbersCache(ILogger<NumbersCache> logger, IOptions<CoreSettings> settings)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
-            _timer = new Timer(500000);
+            _timer = new Timer(settings.Value.ClearCacheTimeoutSeconds * 1000);
             _timer.AutoReset = false;
             _timer.Elapsed += _timer_Elapsed;
 
