@@ -7,7 +7,7 @@ namespace DerivcoAssignment.Core.Infrastructure
     {
         public List<BigInteger> Numbers { get; set; } = new List<BigInteger>();
 
-        public int ActualLastIndex { get; set; }
+        public int ActualLastIndex { get; set; } = -1;
 
         public List<BigInteger> GetAllFromIndexToEnd(int index) => Numbers.GetRange(index, Numbers.Count - index);
     }

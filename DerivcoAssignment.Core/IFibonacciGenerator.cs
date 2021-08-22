@@ -5,6 +5,6 @@ namespace DerivcoAssignment.Core
 {
     public interface IFibonacciGenerator
     {
-        Task<FibonacciResultDto> GenerateFibonacci(int firstIndex, int lastIndex, int timeLimit, int memoryLimit);
+        Task<FibonacciResultDto> GenerateFibonacci(int firstIndex, int lastIndex, bool useCache, int timeLimit, int memoryLimit);
     }
 }

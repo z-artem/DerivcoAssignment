@@ -12,18 +12,21 @@ namespace DerivcoAssignment.Core
 {
     public class FibonacciGenerator : IFibonacciGenerator
     {
-        private readonly INumbersCache _cache;
+        private readonly CacheResolver _cacheResolver;
         private readonly ILogger<FibonacciGenerator> _logger;
 
-        public FibonacciGenerator(INumbersCache cache, ILogger<FibonacciGenerator> logger)
+        private INumbersCache _cache;
+
+        public FibonacciGenerator(CacheResolver cacheResolver, ILogger<FibonacciGenerator> logger)
         {
-            _cache = cache ?? throw new ArgumentNullException(nameof(cache));
+            _cacheResolver = cacheResolver ?? throw new ArgumentNullException(nameof(cacheResolver));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<FibonacciResultDto> GenerateFibonacci(int firstIndex, int lastIndex, int timeLimit, int memoryLimit)
+        public async Task<FibonacciResultDto> GenerateFibonacci(int firstIndex, int lastIndex, bool useCache, int timeLimit, int memoryLimit)
         {
             var cts = new CancellationTokenSource(timeLimit);
+            _cache = _cacheResolver(useCache);
 
             return await Task.Run(() => RunGenerator(firstIndex, lastIndex, memoryLimit, cts.Token));
         }
