@@ -1,5 +1,6 @@
 ﻿using DerivcoAssignment.Core.Dtos;
 using DerivcoAssignment.Core.Infrastructure;
+using DerivcoAssignment.Core.Tests.Extensions;
 using DerivcoAssignment.Core.Tests.TestData;
 using DerivcoAssignment.Tests.Common;
 using DerivcoAssignment.Tests.Common.Helpers;
@@ -39,6 +40,7 @@ namespace DerivcoAssignment.Core.Tests
             actualResult.Should().NotBeNull();
             actualResult.Status.Should().Be(Enums.GenerationResult.Ok);
             actualResult.FibonacciNumbers.Should().NotBeNullOrEmpty();
+            Assert.True(actualResult.EqualsTo(expectedResult));
         }
     }
 }

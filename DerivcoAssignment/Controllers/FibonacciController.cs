@@ -22,14 +22,14 @@ namespace DerivcoAssignment.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(FibonacciResponseViewModel), StatusCodes.Status200OK)]
-        public async Task<ActionResult> GenerateAsync(FibonacciRequestViewModel request)
+        [ProducesResponseType(typeof(JsonResult), StatusCodes.Status200OK)]
+        public async Task<JsonResult> GenerateAsync(FibonacciRequestViewModel request)
         {
             var numbers = await _fibonacciGenerator.GenerateFibonacci(request.FirstIndex, request.LastIndex, request.UseCache, request.TimeLimit, request.MemoryLimit);
 
             var viewModel = _mapper.Map<FibonacciResponseViewModel>(numbers);
 
-            return Ok(viewModel);
+            return new JsonResult(viewModel);
         }
     }
 }
