@@ -11,8 +11,8 @@ namespace DerivcoAssignment.Web.Validation
 
         public ComparisonAttribute(string compareTo, ComparisonType comparisonType)
         {
-            this._compareTo = compareTo ?? throw new ArgumentNullException(nameof(compareTo));
-            this._comparisonType = comparisonType;
+            _compareTo = compareTo ?? throw new ArgumentNullException(nameof(compareTo));
+            _comparisonType = comparisonType;
         }
 
         public override bool RequiresValidationContext => true;

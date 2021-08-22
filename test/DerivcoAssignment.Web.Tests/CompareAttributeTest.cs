@@ -2,6 +2,7 @@
 using DerivcoAssignment.Web.Validation;
 using DerivcoAssignment.Web.ViewModels;
 using FluentAssertions;
+using System;
 using System.ComponentModel.DataAnnotations;
 using Xunit;
 
@@ -24,6 +25,13 @@ namespace DerivcoAssignment.Web.Tests
             _lessOrEqualsAttribute = new ComparisonAttribute(OtherProperty, ComparisonType.LessOrEquals);
             _greaterOrEqualsAttribute = new ComparisonAttribute(OtherProperty, ComparisonType.GreaterOrEquals);
             _equalsAttribute = new ComparisonAttribute(OtherProperty, ComparisonType.Equals);
+        }
+
+        [Fact]
+        public void Constructor_SecondPropertyNotSpecified_Throws()
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(() => new ComparisonAttribute(null, ComparisonType.Equals));
         }
 
         [Theory]
